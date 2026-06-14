@@ -68,7 +68,7 @@
 
   <section class="phase">
     <div class="phase-head"><span class="tag now">NOW</span><h2>Mini Drone</h2></div>
-    <p class="phase-sub">The CICS 256 group project. Not a solo claim, but it is the prototype that taught every lesson the line is built on. Goal: get it reliably flying.</p>
+    <p class="phase-sub">The CICS 256 prototype — the bench that taught every lesson the line is built on. Built and ground-tested; not yet flown.</p>
     <div class="grid">
       <div class="card s">
         <div class="card-k">Platform</div>
@@ -85,53 +85,29 @@
           <span class="chip">full SW control</span>
         </div>
       </div>
-      <div class="card w">
-        <div class="card-k">Open issues · flight blockers</div>
-        <h3>Two fixes to fly</h3>
-        <div class="issue"><div class="dot"></div>
-          <div class="txt"><b>MOSFETS</b> · RLZ44N are standard-level, won't fully saturate on a 3.3V gate. Swap to <b style="color:var(--ink)">IRLZ44N / AO3400</b> (logic-level).</div></div>
-        <div class="issue"><div class="dot"></div>
-          <div class="txt"><b>POWER</b> · 650mAh 1C pack current-starves the motors (~10A peak demand). Move to a high-C 1S LiPo, e.g. <b style="color:var(--ink)">Tattu 500mAh 95C</b>. Verify JST-PHR-2P first.</div></div>
+      <div class="card s">
+        <div class="card-k">Where it stands</div>
+        <h3>Grounded, and understood</h3>
+        <ul>
+          <li>Frame, wiring, and firmware all built</li>
+          <li>Flown on the bench with a custom dashboard</li>
+          <li>Two hardware limits traced and documented</li>
+        </ul>
       </div>
     </div>
   </section>
 
   <section class="phase">
-    <div class="phase-head"><span class="tag next">NEXT</span><h2>Build the foundation</h2></div>
-    <p class="phase-sub">Before the next aircraft: stand up the home for the whole story, and turn the makerspace kit into real sensing experiments.</p>
+    <div class="phase-head"><span class="tag next">NEXT</span><h2>Sensing on the bench</h2></div>
+    <p class="phase-sub">Turn the makerspace sensor kit into real perception experiments — altitude, attitude, and presence — with the fusion code written and debugged off the aircraft.</p>
     <div class="grid">
       <div class="card b">
-        <div class="card-k">Track A · the home</div>
-        <h3>ableLion site</h3>
-        <ul>
-          <li>Build-log format, dated entries</li>
-          <li>One page per drone in the line</li>
-          <li>Show the <b>software</b>, not just the hardware</li>
-          <li>Lessons and failures logged openly</li>
-        </ul>
-      </div>
-      <div class="card b">
-        <div class="card-k">Track B · sensing</div>
-        <h3>MAKE 256 kit to perception</h3>
-        <ul>
-          <li><b>Distance sensor</b> → altitude-hold bench rig</li>
-          <li><b>IMU / accel</b> → attitude + motion logger</li>
-          <li><b>PIR / tilt</b> → presence + landed-state</li>
-          <li><b>Photoresistor</b> → landing-pad / flow tests</li>
-        </ul>
-        <div class="specs">
-          <span class="chip">write fusion code on ESP32</span>
-          <span class="chip">debug off-aircraft</span>
-        </div>
-      </div>
-      <div class="card b">
-        <div class="card-k">Why this order</div>
+        <div class="card-k">Direction</div>
         <h3>The perception layer</h3>
         <ul>
-          <li>It is the front half of a flight controller</li>
-          <li>Cheaper and safer to build on the bench</li>
-          <li>Drops straight into V1 later</li>
-          <li>Great documentation content</li>
+          <li>Altitude, attitude, and presence on the bench</li>
+          <li>Sensor fusion in custom ESP32 code</li>
+          <li>Debugged off-aircraft, then carried into the next build</li>
         </ul>
       </div>
     </div>
@@ -139,34 +115,14 @@
 
   <section class="phase">
     <div class="phase-head"><span class="tag horizon">HORIZON</span><h2>ableLion V1</h2></div>
-    <p class="phase-sub">The first real solo entry in the line. Go brushless, stay in full software control, keep the ESP32 and your own flight code. Budget ≈ $105 to $125.</p>
+    <p class="phase-sub">The first solo aircraft in the line: go 2S brushless, keep the ESP32 and the custom flight code, and stay in full software control with a standalone ESC.</p>
     <div class="grid">
       <div class="card s">
-        <div class="card-k">Airframe + power</div>
-        <h3>2S brushless, ~85mm</h3>
+        <div class="card-k">Direction</div>
+        <h3>Brushless, still self-flown</h3>
         <ul>
-          <li>4× <b>1103 11000KV</b> motors</li>
-          <li><b>40mm 3-blade</b> props</li>
-          <li><b>2S 300 to 450mAh</b> LiPo packs</li>
-          <li>2S balance charger</li>
-        </ul>
-      </div>
-      <div class="card s">
-        <div class="card-k">The critical constraint</div>
-        <h3>Standalone ESC, not an AIO</h3>
-        <ul>
-          <li>Micro <b>4-in-1 ESC</b>, 2S, 10 to 20A</li>
-          <li>Must expose <b>S1 to S4 signal pads</b></li>
-          <li><b>AM32 / BLHeli_S</b> firmware</li>
-          <li><span style="color:var(--warn)">1S brushless means AIO lock-in. 2S is the floor.</span></li>
-        </ul>
-      </div>
-      <div class="card s">
-        <div class="card-k">Software work</div>
-        <h3>ESP32 to ESC</h3>
-        <ul>
-          <li><b>DShot</b> out via RMT peripheral</li>
-          <li>ESC arming sequence</li>
+          <li>2S brushless on a standalone ESC, not an all-in-one</li>
+          <li>ESP32 driving the ESC over DShot</li>
           <li>Full PID retune for brushless</li>
         </ul>
       </div>
