@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AbleBudget — ableLion</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav><div class="nav-inner">
+  <div class="brand">able<span class="l">Lion</span></div>
+  <div class="nav-links">
+    <a href="index.html">HOME</a>
+    <a href="roadmap.html">ROADMAP</a>
+    <a href="mini-drone.html">MINI DRONE</a>
+    <a href="ablebudget.html" class="active">ABLEBUDGET</a>
+    <a class="soon">LOG · SOON</a>
+  </div>
+</div></nav>
+
+<div class="wrap">
+  <section class="hero">
+    <div class="eyebrow">Building in public</div>
+    <h1>AbleBudget</h1>
+    <p class="tagline">a personal, local budgeting dashboard</p>
+    <p class="mission">AbleBudget is a local-first budgeting dashboard that links read-only to your bank via Plaid. It is a single-user app: no cloud, no logins, and the database stays on your machine. This page tracks progress and documentation as the app is built.</p>
+  </section>
+
+  <section class="intro">
+    <div class="intro-grid">
+      <div>
+        <h2>What it is</h2>
+        <p>A desktop-forward web app to link your accounts (via Plaid), import transactions into a local SQLite DB, set monthly budgets by category, and view budget vs actual charts.</p>
+        <p>Privacy-first: access tokens and transaction data never leave your machine.</p>
+      </div>
+      <div>
+        <h2>Where it stands</h2>
+        <p>Active development. Backend + frontend scaffolded; Plaid integration and sync in progress. See the repo for build & run instructions.</p>
+        <p><a href="https://github.com/MalachiAflynn/ablebudget" target="_blank">View the AbleBudget repo on GitHub →</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="status">
+    <h2>Notes</h2>
+    <p class="status-sub">Short log of progress</p>
+    <div class="grid feed">
+      <div class="card s">
+        <div class="card-k"><span class="stamp">● ACTIVE</span> · SOFTWARE</div>
+        <h3>AbleBudget</h3>
+        <ul>
+          <li>React + Vite frontend</li>
+          <li>Node backend with Plaid sync</li>
+          <li>Local SQLite storage</li>
+        </ul>
+        <div class="specs"><span class="chip">in progress</span></div>
+      </div>
+    </div>
+  </section>
+
+  <footer><p>ableLion · MINI DRONE → V1 → ∞</p></footer>
+</div>
+</body>
+</html>
