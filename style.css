@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500&display=swap');
 
 :root{
-  --void:#ffffff;        /* white — main background */
+  --void:#ffffff;        /* white, main background */
   --panel:#f8fafc;       /* light grey panel */
   --panel-2:#f1f5f9;     /* light grey panel (gradient end) */
   --line:#e2e8f0;        /* hairlines / borders */
@@ -26,6 +26,8 @@ body{
   padding:0 0 80px;
 }
 a{color:inherit;text-decoration:none}
+code{font-family:'IBM Plex Mono',monospace;font-size:.88em;color:var(--beam);
+  background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:1px 5px}
 .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
 
 /* NAV */
@@ -53,6 +55,17 @@ nav{
 .nav-links a.active{color:var(--signal)}
 .nav-links a.soon{opacity:.45;cursor:default}
 .nav-links a.soon:hover{background:none;color:var(--dim)}
+
+/* PROJECT SWITCHER (left, in place of the brand) */
+.switch{display:inline-flex;align-items:center;gap:2px;border:1px solid var(--line);
+  border-radius:9px;padding:3px;background:var(--panel);flex-shrink:0}
+.switch a{font-family:'Space Grotesk',sans-serif;font-size:13.5px;font-weight:700;
+  letter-spacing:-.02em;color:var(--dim);padding:6px 13px;border-radius:6px;transition:.18s}
+.switch a span{color:var(--dim);transition:.18s}
+.switch a:hover{color:var(--ink)}
+.switch a:hover span{color:var(--signal)}
+.switch a.active{background:var(--void);color:var(--ink);box-shadow:0 1px 2px rgba(15,23,42,.07)}
+.switch a.active span{color:var(--signal)}
 
 /* HERO bits */
 .eyebrow{
@@ -92,6 +105,9 @@ h1 .a{color:var(--ink)} h1 .l{color:var(--signal)}
 .card li{padding:5px 0 5px 18px;position:relative}
 .card li::before{content:"›";position:absolute;left:0;color:var(--accent,var(--dim));font-weight:700}
 .card li b{color:var(--ink);font-weight:500}
+
+.soon-card{opacity:.5}
+.soon-card .card-k{color:var(--dim)}
 
 footer{padding-top:40px;text-align:center;border-top:1px solid var(--line);margin-top:8px}
 footer p{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--dim);letter-spacing:.15em;padding-top:32px}
