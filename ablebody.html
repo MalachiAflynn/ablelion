@@ -11,9 +11,18 @@
   .lede{max-width:620px;margin-top:20px;color:var(--dim);font-size:16px;line-height:1.65}
   .lede b{color:var(--ink);font-weight:500}
   .status-line{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.1em;
-    color:var(--warn);margin-top:22px;display:flex;align-items:center;gap:9px}
-  .status-line::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--warn);
-    box-shadow:0 0 10px var(--warn);animation:pulse 2.4s ease-in-out infinite}
+    color:var(--signal);margin-top:22px;display:flex;align-items:center;gap:9px}
+  .status-line::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--signal);
+    box-shadow:0 0 10px var(--signal);animation:pulse 2.4s ease-in-out infinite}
+
+  /* SCREENSHOT */
+  .shot-sec{padding:46px 0;border-bottom:1px solid var(--line)}
+  .shot-sec h2{font-family:'Space Grotesk',sans-serif;font-size:13px;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--signal);margin-bottom:8px;font-weight:600}
+  .shot-cap{color:var(--dim);font-size:14px;line-height:1.6;margin:0 0 18px;max-width:620px}
+  .shot-cap b{color:var(--ink);font-weight:500}
+  .shot{width:100%;border:1px solid var(--line);border-radius:12px;display:block;
+    box-shadow:0 12px 40px rgba(15,23,42,.10)}
 
   .intro{padding:54px 0;border-bottom:1px solid var(--line)}
   .intro-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
@@ -74,20 +83,26 @@
   </div>
   <div class="nav-links">
     <a href="ablebody.html" class="active">OVERVIEW</a>
+    <a href="#dashboard">DASHBOARD</a>
     <a href="#data">DATA FLOW</a>
     <a href="#stack">STACK</a>
-    <a class="soon">LIVE DASHBOARD · SOON</a>
   </div>
 </div></nav>
 
 <div class="wrap">
 
   <header class="page">
-    <div class="eyebrow w">Project 03 · software · runs locally</div>
+    <div class="eyebrow">Project 03 · software · runs locally</div>
     <h1>able<span class="l">Body</span></h1>
-    <p class="lede">A personal health dashboard for my Mac that pulls my own data off my <b>Fitbit Air</b> through the new <b>Google Health API</b> (read-only) and renders the trends I actually care about &mdash; resting heart rate, sleep, HRV, and activity &mdash; on a local instrument panel. Like ableBudget, it runs entirely on my machine, so <b>the OAuth tokens and the health data never leave it.</b></p>
-    <div class="status-line">STATUS: RESEARCH COMPLETE · BUILD NOT YET STARTED · TARGETING THE GOOGLE HEALTH API</div>
+    <p class="lede">A personal health dashboard for my Mac that pulls my own data off my <b>Fitbit Air</b> through the new <b>Google Health API</b> (read-only) and renders <b>every metric it can read</b> &mdash; heart, sleep, fitness, and body signals &mdash; on a local instrument panel. Like ableBudget, it runs entirely on my machine, so <b>the OAuth tokens and the health data never leave it.</b></p>
+    <div class="status-line">STATUS: DASHBOARD BUILT &amp; RUNNING LOCALLY · WIRING UP LIVE GOOGLE HEALTH DATA</div>
   </header>
+
+  <section class="shot-sec" id="dashboard">
+    <h2>The dashboard</h2>
+    <p class="shot-cap">The <b>Home</b> view: a bento board of every metric at a glance, each tile with its own sparkline &mdash; resting HR, HRV, SpO&#8322;, sleep, steps, active zone minutes, VO&#8322; max, weight, glucose and more. Detail tabs (<b>Heart, Fitness, Sleep, Body</b>) break each system out in full. Built in the same white / blue / slate instrument language as the rest of ableLion.</p>
+    <img class="shot" src="ablebody-dashboard.png" alt="ableBody dashboard — bento home view showing every health metric at a glance">
+  </section>
 
   <section class="intro">
     <div class="intro-grid">
@@ -138,45 +153,55 @@
 
   <section class="sec">
     <h2>What's inside</h2>
-    <p class="sub">Four panels, each backed by the Google Health API's read methods (<code>list</code>, <code>rollUp</code>, <code>dailyRollUp</code>). Sync is on-demand and incremental, paging through results with the API's <code>nextPageToken</code> so re-running it never double-counts.</p>
+    <p class="sub">A bento <b>Home</b> overview plus four detail tabs, together surfacing <b>every data type the Google Health API exposes</b> &mdash; backed by its read methods (<code>list</code>, <code>rollUp</code>, <code>dailyRollUp</code>). Sync is on-demand and incremental, paging through <code>nextPageToken</code> so re-running it never double-counts.</p>
     <div class="grid">
       <div class="card s">
-        <div class="card-k">Panel · Today</div>
-        <h3>At a glance</h3>
+        <div class="card-k">Tab · Home</div>
+        <h3>Everything at a glance</h3>
         <ul>
-          <li>Resting heart rate &amp; current HR</li>
-          <li>Steps, distance, active minutes vs. goal</li>
-          <li>Last night's sleep score</li>
+          <li>Bento grid of ~20 live tiles</li>
+          <li>A sparkline under every stat</li>
+          <li>One screen, whole-body snapshot</li>
         </ul>
-        <div class="specs"><span class="chip">dailyRollUp</span></div>
+        <div class="specs"><span class="chip">bento</span></div>
       </div>
       <div class="card s">
-        <div class="card-k">Panel · Trends</div>
-        <h3>The long view</h3>
+        <div class="card-k">Tab · Heart</div>
+        <h3>Cardiovascular</h3>
         <ul>
-          <li>Resting HR &amp; HRV over weeks</li>
-          <li>Activity and steps over time</li>
-          <li>Spot the drift before it's a problem</li>
+          <li>Intraday HR &amp; SpO&#8322;, resting HR, HRV</li>
+          <li>Respiratory rate, HR zones</li>
+          <li>Irregular-rhythm &amp; ECG status</li>
+        </ul>
+        <div class="specs"><span class="chip">vitals</span></div>
+      </div>
+      <div class="card s">
+        <div class="card-k">Tab · Fitness</div>
+        <h3>Activity &amp; workouts</h3>
+        <ul>
+          <li>Detected workouts log</li>
+          <li>Steps, distance, floors, calories</li>
+          <li>Active zone minutes, VO&#8322; max</li>
         </ul>
         <div class="specs"><span class="chip">recharts</span></div>
       </div>
       <div class="card s">
-        <div class="card-k">Panel · Sleep</div>
-        <h3>Nightly breakdown</h3>
+        <div class="card-k">Tab · Sleep</div>
+        <h3>Sleep &amp; recovery</h3>
         <ul>
-          <li>Stages, duration, and sleep score</li>
-          <li>Bed/wake consistency over the week</li>
-          <li>Sleep vs. next-day resting HR</li>
+          <li>Duration trend &amp; stage breakdown</li>
+          <li>Skin-temperature variation</li>
+          <li>Overnight respiratory rate</li>
         </ul>
-        <div class="specs"><span class="chip">sleep summary</span></div>
+        <div class="specs"><span class="chip">stages</span></div>
       </div>
       <div class="card s">
-        <div class="card-k">Panel · Body signals</div>
-        <h3>The quiet metrics</h3>
+        <div class="card-k">Tab · Body</div>
+        <h3>Measurements &amp; logs</h3>
         <ul>
-          <li>SpO2 &amp; respiratory rate</li>
-          <li>Skin / body temperature deltas</li>
-          <li>Early-warning view for getting sick</li>
+          <li>Weight &amp; body-fat trends</li>
+          <li>Hydration, nutrition, glucose</li>
+          <li>Honest flags for manual-entry data</li>
         </ul>
         <div class="specs"><span class="chip">read-only</span></div>
       </div>
@@ -184,7 +209,7 @@
   </section>
 
   <section class="sec" id="stack">
-    <h2>The intended stack</h2>
+    <h2>The stack</h2>
     <p class="sub">Deliberately the same shape as ableBudget &mdash; swap Plaid for the Google Health API and the privacy model carries straight over.</p>
     <table class="bom">
       <tr><td class="role">Backend</td><td class="part">Node + TypeScript, Express 5</td><td class="note">Binds to 127.0.0.1, CORS locked to the local frontend</td></tr>
@@ -192,9 +217,9 @@
       <tr><td class="role">Auth</td><td class="part">Google OAuth 2.0</td><td class="note">Authorization Code + PKCE; restricted health scopes</td></tr>
       <tr><td class="role">Storage</td><td class="part">better-sqlite3</td><td class="note">One local SQLite file; holds the refresh token + cached data points</td></tr>
       <tr><td class="role">Validation</td><td class="part">zod</td><td class="note">Env config and API payloads validated on startup &amp; at the edge</td></tr>
-      <tr><td class="role">Frontend</td><td class="part">React 19 + Vite</td><td class="note">react-router-dom for the panels</td></tr>
-      <tr><td class="role">Charts</td><td class="part">recharts</td><td class="note">Resting HR, HRV, sleep, and activity over time</td></tr>
-      <tr><td class="role">Theme</td><td class="part">Dark instrument panel</td><td class="note">The same dark adaptation of the ableLion design system</td></tr>
+      <tr><td class="role">Frontend</td><td class="part">React 19 + Vite</td><td class="note">Tabbed dashboard with shared chart &amp; tile components</td></tr>
+      <tr><td class="role">Charts</td><td class="part">recharts</td><td class="note">Area, bar, and sparkline trends across every metric</td></tr>
+      <tr><td class="role">Theme</td><td class="part">Light instrument panel</td><td class="note">The white / blue / slate ableLion design system</td></tr>
     </table>
   </section>
 
@@ -212,10 +237,10 @@
     <div class="grid">
       <div class="card b">
         <div class="card-k">Next</div>
-        <h3>Stand up the read path</h3>
+        <h3>Connect the live data</h3>
         <ul>
           <li>Google Cloud project, enable the Health API, wire the OAuth flow</li>
-          <li>First real call: pull a week of resting HR and steps into SQLite</li>
+          <li>Swap the seeded data for real reads &mdash; the dashboard is built and waiting on it</li>
         </ul>
       </div>
       <div class="card soon-card">
